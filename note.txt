@@ -1,1 +1,13 @@
 - column have unique: true => auto creates a unique index
+
+CHAR(2)
+'A'  --> 'A '
+'US' --> 'US' => auto add space, so should use varchar for all
+
+npm run migration:generate -- src/migrations/CreateUsers
+
+SELECT typname 
+FROM pg_type
+WHERE typtype = 'e';
+
+DROP TYPE users_role_enum;
