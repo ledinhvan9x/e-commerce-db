@@ -1,0 +1,1 @@
+- column have unique: true => auto creates a unique index
