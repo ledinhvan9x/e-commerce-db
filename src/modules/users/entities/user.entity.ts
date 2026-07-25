@@ -1,11 +1,5 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  CreateDateColumn,
-  UpdateDateColumn,
-  DeleteDateColumn,
-} from 'typeorm';
+import { BaseEntity } from 'src/common/entities/base.entity';
+import { Entity, Column } from 'typeorm';
 
 export enum UserRole {
   ADMIN = 'admin',
@@ -14,10 +8,7 @@ export enum UserRole {
 }
 
 @Entity('users') // custom name for the table
-export class User {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
-
+export class User extends BaseEntity {
   @Column({ type: 'varchar', length: 100 }) // varchar of pg
   name: string; // string for nestjs
 
@@ -32,13 +23,4 @@ export class User {
 
   @Column({ type: 'enum', enum: UserRole, default: UserRole.CUSTOMER })
   role: UserRole;
-
-  @CreateDateColumn({ name: 'created_at', type: 'timestamptz' }) // Prefer timestamptz over timestamp to avoid timezone issues.
-  createdAt: Date;
-
-  @UpdateDateColumn({ name: 'updated_at', type: 'timestamptz' })
-  updatedAt: Date;
-
-  @DeleteDateColumn({ name: 'deleted_at', type: 'timestamptz', nullable: true })
-  deletedAt: Date | null;
 }
