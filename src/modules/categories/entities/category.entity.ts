@@ -1,6 +1,7 @@
 import { BaseEntity } from 'src/common/entities/base.entity';
+import { Product } from 'src/modules/products/entities/product.entity';
 
-import { Entity, Column } from 'typeorm';
+import { Entity, Column, OneToMany } from 'typeorm';
 
 @Entity('categories')
 export class Category extends BaseEntity {
@@ -9,4 +10,7 @@ export class Category extends BaseEntity {
 
   @Column({ type: 'text' })
   description: string;
+
+  @OneToMany(() => Product, (product) => product.category)
+  products: Product[];
 }

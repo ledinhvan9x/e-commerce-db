@@ -1,6 +1,7 @@
 import { BaseEntity } from 'src/common/entities/base.entity';
+import { Product } from 'src/modules/products/entities/product.entity';
 import { User } from 'src/modules/users/entities/user.entity';
-import { Entity, Column, OneToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, OneToOne, JoinColumn, OneToMany } from 'typeorm';
 
 @Entity('sellers')
 export class Seller extends BaseEntity {
@@ -19,4 +20,7 @@ export class Seller extends BaseEntity {
   @OneToOne(() => User, (user) => user.seller)
   @JoinColumn({ name: 'user_id' })
   user: User;
+
+  @OneToMany(() => Product, (product) => product.seller)
+  products: Product[];
 }
