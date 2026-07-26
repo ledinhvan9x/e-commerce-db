@@ -11,3 +11,9 @@ FROM pg_type
 WHERE typtype = 'e';
 
 DROP TYPE users_role_enum;
+
+SELECT indexname, indexdef
+FROM pg_indexes
+WHERE tablename = 'users';
+
+if relations => not use @Column

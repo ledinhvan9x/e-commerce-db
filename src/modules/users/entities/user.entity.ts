@@ -1,5 +1,6 @@
 import { BaseEntity } from 'src/common/entities/base.entity';
-import { Entity, Column } from 'typeorm';
+import { Seller } from 'src/modules/sellers/entities/seller.entity';
+import { Entity, Column, OneToOne } from 'typeorm';
 
 export enum UserRole {
   ADMIN = 'admin',
@@ -23,4 +24,7 @@ export class User extends BaseEntity {
 
   @Column({ type: 'enum', enum: UserRole, default: UserRole.CUSTOMER })
   role: UserRole;
+
+  @OneToOne(() => Seller, (seller) => seller.user)
+  seller: Seller;
 }
