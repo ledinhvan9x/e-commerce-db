@@ -1,7 +1,8 @@
 import { BaseEntity } from 'src/common/entities/base.entity';
 import { Seller } from 'src/modules/sellers/entities/seller.entity';
-import { Entity, Column, JoinColumn, ManyToOne } from 'typeorm';
+import { Entity, Column, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 import { Category } from 'src/modules/categories/entities/category.entity';
+import { ProductImage } from 'src/modules/product-images/entities/product-image.entity';
 
 export enum StatusEnum {
   ACTIVE = 'active',
@@ -30,4 +31,7 @@ export class Product extends BaseEntity {
   @ManyToOne(() => Seller, (seller) => seller.products) // the 2nd part is for reverse side (seller) => seller.products
   @JoinColumn({ name: 'seller_id' })
   seller: Seller;
+
+  @OneToMany(() => ProductImage, (pi) => pi.product)
+  productImages: ProductImage[];
 }

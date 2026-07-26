@@ -17,3 +17,5 @@ FROM pg_indexes
 WHERE tablename = 'users';
 
 if relations => not use @Column
+
+@Column() => default not null already

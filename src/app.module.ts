@@ -7,6 +7,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { SellersModule } from './modules/sellers/sellers.module';
 import { CategoriesModule } from './modules/categories/categories.module';
 import { ProductsModule } from './modules/products/products.module';
+import { ProductImagesModule } from './modules/product-images/product-images.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { ProductsModule } from './modules/products/products.module';
     SellersModule,
     CategoriesModule,
     ProductsModule,
+    ProductImagesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
